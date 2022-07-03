@@ -1,0 +1,61 @@
+$cell-size: 64px;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board {
+    width: calc($cell-size * 8);
+    height: calc($cell-size * 8);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cell {
+    height: $cell-size;
+    width: $cell-size;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell img {
+    width: calc($cell-size / 1.5);
+    height: calc($cell-size / 1.5);
+    position: relative;
+}
+
+.black {
+    background-color: rgb(18, 70, 111);
+}
+
+.white {
+    background-color: rgb(217, 222, 223);
+}
+
+.selected {
+    background-color: brown;
+}
+
+.available {
+    height: calc($cell-size / 5);
+    width: calc($cell-size / 5);
+    border-radius: 50%;
+    background-color: green;
+}
+
+.lost {
+    height: calc(50vh - 60px);
+    padding: 30px;
+    margin-left: 50px;
+    background-color: lightgray;
+}
