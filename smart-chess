@@ -1,0 +1,14 @@
+#!/bin/bash
+
+case $1 in
+  start)
+    docker-compose -p smart-chess up ;;
+  stop)
+    docker-compose -p smart-chess down ;;
+  rmi)
+    docker-compose -p smart-chess down --rmi all ;;
+  connect)
+    docker exec -it smart-chess bash ;;
+  *)
+    echo "Using: ./smart-chess [start, stop, rmi, connect]" ;;
+esac;
