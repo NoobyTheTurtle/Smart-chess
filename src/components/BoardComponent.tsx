@@ -3,6 +3,8 @@ import {Board} from "../models/Board";
 import CellComponent from "./CellComponent";
 import {Cell} from "../models/Cell";
 import {Player} from "../models/Player";
+import {Box, Typography} from "@mui/material";
+import {Colors} from "../models/Colors";
 
 interface BoardProps {
     board: Board,
@@ -42,9 +44,30 @@ const BoardComponent: FC<BoardProps> = ({board, setBoard, currentPlayer, swapPla
     }
 
     return (
-        <main>
-            <h3>Текущий игрок {currentPlayer?.color}</h3>
-            <div className="board">
+        <>
+            <Typography
+                sx={{
+                    mt: 6,
+                    mb: 4
+                }}
+                component="h1"
+                variant="h4"
+                textAlign="center"
+                gutterBottom
+            >
+                Ход игрока за {currentPlayer?.color === Colors.BLACK ? "чёрных" : "белых"}
+            </Typography>
+            <Box
+                display="flex"
+                flexWrap="wrap"
+                sx={{
+                    width: 64 * 8,
+                    height: 64 * 8,
+                    border: "1em solid black",
+                    boxSizing: "content-box",
+                    borderRadius: "1em",
+                }}
+            >
                 {board.cells.map((row, index) => (
                     <React.Fragment key={index}>
                         {row.map((cell) => (
@@ -57,8 +80,8 @@ const BoardComponent: FC<BoardProps> = ({board, setBoard, currentPlayer, swapPla
                         ))}
                     </React.Fragment>
                 ))}
-            </div>
-        </main>
+            </Box>
+        </>
     );
 };
 
