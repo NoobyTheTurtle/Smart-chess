@@ -1,6 +1,7 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 import {Player} from "../models/Player";
 import {Colors} from "../models/Colors";
+import {Button, Typography, Box, Grid, Paper} from "@mui/material";
 
 interface TimerProps {
     currentPlayer: Player | null
@@ -17,7 +18,7 @@ const Timer: FC<TimerProps> = ({currentPlayer, restart}) => {
     }, [currentPlayer])
 
     function startTimer() {
-        if(timer.current) {
+        if (timer.current) {
             clearInterval(timer.current)
         }
         const callback = currentPlayer?.color === Colors.WHITE ? decrementWhiteTimer : decrementBlackTimer
@@ -39,13 +40,33 @@ const Timer: FC<TimerProps> = ({currentPlayer, restart}) => {
     }
 
     return (
-        <div>
-            <div>
-                <button onClick={handleRestart}>Рестарт</button>
-            </div>
-            <h2>Черные - {blackTime}</h2>
-            <h2>Белые - {whiteTime}</h2>
-        </div>
+        <Grid
+            container
+            spacing={2}
+            direction="column" //TODO: Сделать адаптивный переход, чтоб рестарт был внизу
+        >
+            <Grid item xs={4}>
+                <Paper sx={{p: 1}}>
+                    <Typography component="p" align="center" noWrap variant="h6">Черные - {blackTime}</Typography>
+                </Paper>
+            </Grid>
+            <Grid item xs={4}>
+                <Paper sx={{p: 1}}>
+                    <Typography component="p" align="center" noWrap variant="h6">Белые - {whiteTime}</Typography>
+                </Paper>
+            </Grid>
+            <Grid item xs={4}>
+                <Box display="flex" justifyContent="center">
+                    <Button
+                        variant="contained"
+                        size="medium"
+                        onClick={handleRestart}
+                    >
+                        Рестарт
+                    </Button>
+                </Box>
+            </Grid>
+        </Grid>
     );
 };
 
